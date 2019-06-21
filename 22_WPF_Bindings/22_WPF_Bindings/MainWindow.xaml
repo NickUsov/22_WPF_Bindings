@@ -1,0 +1,31 @@
+﻿<Window x:Class="_22_WPF_Bindings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_22_WPF_Bindings"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <GroupBox x:Name="gb1" Header="Внешний GroupBox">
+            <StackPanel>
+                <GroupBox x:Name="gb2" Header="Внутренний GroupBox 1">
+                    <StackPanel>
+                        <TextBlock Text="Ширина текста:"/>
+                        <TextBlock Background="Yellow" Text="{Binding RelativeSource={RelativeSource Mode=Self}, Path= ActualWidth ,Mode=Default,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Ширина окна:"/>
+                        <TextBlock Background="Yellow" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type Window}}, Path=Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox x:Name="gb3" Header="Внутренний GroupBox 2">
+                    <StackPanel>
+                        <TextBlock Text="Заголовок внутреннего GroupBox:"/>
+                        <TextBlock  Background="Yellow" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type GroupBox}}, Path=Header, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Заголовок внешнего GroupBox:"/>
+                        <TextBlock  Background="Yellow" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type GroupBox},AncestorLevel=2}, Path=Header, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
